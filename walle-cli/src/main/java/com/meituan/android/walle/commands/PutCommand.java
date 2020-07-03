@@ -18,6 +18,8 @@ import java.util.Map;
 @Parameters(commandDescription = "put channel info into apk")
 public class PutCommand implements IWalleCommand{
 
+    private static final String SUCCESS = "success";
+
     @Parameter(required = true, description = "inputFile [outputFile]", arity = 2, converter = FileConverter.class)
     private List<File> files;
 
@@ -42,6 +44,7 @@ public class PutCommand implements IWalleCommand{
         if (inputFile.equals(outputFile)) {
             try {
                 ChannelWriter.put(outputFile, channel, extraInfo);
+                System.out.println(SUCCESS);
             } catch (IOException | SignatureNotFoundException e) {
                 e.printStackTrace();
             }
@@ -49,6 +52,7 @@ public class PutCommand implements IWalleCommand{
             try {
                 FileUtils.copyFile(inputFile, outputFile);
                 ChannelWriter.put(outputFile, channel, extraInfo);
+                System.out.println(SUCCESS);
             } catch (IOException | SignatureNotFoundException e) {
                 e.printStackTrace();
             }

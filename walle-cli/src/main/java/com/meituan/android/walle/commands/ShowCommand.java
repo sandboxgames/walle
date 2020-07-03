@@ -76,7 +76,7 @@ public class ShowCommand implements IWalleCommand {
 
     private void printInfo(final Fun1<File, String> fun) {
         for (File file : files) {
-            System.out.println(file.getAbsolutePath() + " : " + fun.apply(file));
+            System.out.println(fun.apply(file));
         }
     }
 }
